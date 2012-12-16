@@ -1,0 +1,67 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[nynorsk]{babel}%babel package with nynorsk language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[newdimens]{labels}
+\usepackage{rotating}
+\usepackage{pst-barcode}
+\LabelCols=4% Number of columns of labels per page
+\LabelRows=6% Number of rows of labels per page
+\LeftPageMargin=15mm% These four parameters give the
+\RightPageMargin=15mm% page gutter sizes. The outer edges of
+\TopPageMargin=13.5mm% the outer labels are the specified
+\BottomPageMargin=13.5mm% distances from the edge of the paper.
+\InterLabelColumn=6mm% Gap between columns of labels
+\InterLabelRow=6mm% Gap between rows of labels
+\LeftLabelBorder=1mm% These four parameters give the extra
+\RightLabelBorder=1mm% space used around the text on each
+\TopLabelBorder=0mm% actual label.
+\BottomLabelBorder=0mm%
+\begin{document}% End of preamble
+\tiny
+\begin{labels}
+  \makebox{% start main box, holding all nested boxes
+    \makebox[0mm]{%box for batch/bottle number. 0 mm means latex will treat it as having no extent
+      \raisebox{15mm}{%need to raise the box to top of label
+        \hspace{40mm}%moving text right 40 mm
+        \emph{Batch \#132} \hfill \emph{Flaske \#132}
+      }%end raisebox
+    }%end batch-/bottle-box
+    \makebox[0mm]{%box for QR-code
+      \raisebox{-14mm}{%lowering it
+        \hspace{15mm}%pushing the code right
+        \psbarcode{http://www.brutalzorz.org}{height=1 width=1 eclevel=H}{qrcode}%this makes a 1 by 1 inch QR-code with error correction level H. Text of QR-code is "http://www.brutalzorz.org
+      }%end raisebox
+    }%end QR-box
+    \makebox[0mm]{%box for the beername
+      \raisebox{0mm}{%raisebox that might not be strictly necessary
+        \begin{rotate}{-90}%rotating the text 90 degrees clockwise
+          \raggedleft%raggedleft doesn't seem to do anything here...
+          \makebox[0mm]{%each raisebox needs to be in a makebox, else it will take up space and push other boxes around
+            \raisebox{36mm}{
+              Juleøl
+            }
+          }
+        \end{rotate}
+      }
+    }%end of box for beername
+    \makebox[0mm]{%box for date
+      \raisebox{0mm}{
+        \begin{rotate}{90} 
+          \makebox[0mm]{
+            \raisebox{-2mm}{
+              \today
+            }
+          }
+        \end{rotate}
+      }
+    }%end of box for date
+    \makebox[0mm]{%box for URL
+      \raisebox{-20mm}{
+        \hspace{40mm}
+        www.brutalzorz.org
+      }
+    }%end of box for URL
+  }%end main box
+\end{labels}
+\end{document}
