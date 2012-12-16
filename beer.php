@@ -6,69 +6,97 @@ if (!$con)
   }
 
 echo "haha","<br>";
-$batchNumber=31;
-$batchName="Juleøl 2";
-$batchCode="J2";
+$batchNumber=15;
+$batchName="Sturdy little helper";
 $numBottles=21;
-$filename="batch_".$batchNumber.".tex";
+$brewDate="2012.11.02";
+$filename="batch_".$batchNumber;
 echo "filename = $filename"."\n";
-$file=fopen($filename, "w");
+$file=fopen($filename.".tex", "w");
 #echo $file;
-$preamble = "\documentclass[a4paper,12pt]{article}
-\usepackage[nynorsk]{babel}
-\usepackage{graphicx}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[newdimens]{labels}
-\usepackage{rotating}
-\usepackage{pst-barcode}
-\LabelCols=4% Number of columns of labels per page
-\LabelRows=6% Number of rows of labels per page
-\LeftPageMargin=15mm% These four parameters give the
-\RightPageMargin=15mm% page gutter sizes. The outer edges of
-\TopPageMargin=13.5mm% the outer labels are the specified
-\BottomPageMargin=13.5mm% distances from the edge of the paper.
-\InterLabelColumn=6mm% Gap between columns of labels
-\InterLabelRow=6mm% Gap between rows of labels
-\LeftLabelBorder=1mm% These four parameters give the extra
-\RightLabelBorder=1mm% space used around the text on each
-\TopLabelBorder=0mm% actual label.
-\BottomLabelBorder=0mm%
-\LabelGridtrue
-\LabelInfotrue
-\\newcommand{\batchName}{}
-\\newcommand{\batchCode}{}
-\\newcommand{\batchNumber}{}
-\\newcommand{\bottleNumber}{}
-\\newcommand{\qrText}{}
+$preamble = "\\documentclass[a4paper,12pt]{article}
+\\usepackage[nynorsk]{babel}
+\\usepackage{graphicx}
+\\usepackage[utf8]{inputenc}
+\\usepackage[T1]{fontenc}
+\\usepackage[newdimens]{labels}
+\\usepackage{rotating}
+\\usepackage{pst-barcode}
+\\LabelCols=4
+\\LabelRows=6
+\\LeftPageMargin=15mm
+\\RightPageMargin=15mm
+\\TopPageMargin=13.5mm
+\\BottomPageMargin=13.5mm
+\\InterLabelColumn=6mm
+\\InterLabelRow=6mm
+\\LeftLabelBorder=1mm
+\\RightLabelBorder=1mm
+\\TopLabelBorder=0mm
+\\BottomLabelBorder=0mm
+\\begin{document}
+\\tiny
+\\begin{labels}
 ";
 fwrite($file,$preamble);
 #echo $preamble;
-$labelTemplate = "  \\raisebox{-44mm}[0mm][40mm]{\parbox{0.95\columnwidth}{Batch \#\batchNumber{}Flaske \#\bottleNumber{}    \makebox{Juleøl (J2)}}}
-  \\raisebox{22mm}{\makebox{%
-      \parbox{0.95\columnwidth}{\psbarcode{\qrText}{height=1 width=1}{qrcode}}
-      \parbox{0.95\columnwidth}{\psbarcode[rotate=90]{000\batchNumber0\bottleNumber}{height=0.4 includetext}{ean8}}
-    }}
-\n";
-writelabels($file,$batchName,$batchCode,$batchNumber,$numBottles,$labelTemplate);
-function writeLabels($file,$batchName,$batchCode,$batchNumber,$numBottles,$labelTemplate)
+writelabels($file,$batchName,$batchNumber,$numBottles,$brewDate);
+function writeLabels($file,$batchName,$batchNumber,$numBottles,$brewDate)
 {
-  $batchConstants = "\\renewcommand{\batchName}{".$batchName."}
-\\renewcommand{\batchCode}{".$batchCode."}
-\\renewcommand{\batchNumber}{".$batchNumber."}
-\\renewcommand{\qrText}{Dette er batchnummer \batchNumber{} flaskenummer \bottleNumber{}}\n";
-  fwrite($file,"\begin{document}
-  \\footnotesize
-  \begin{labels}");
-  fwrite($file,$batchConstants);
+
   for ($i = 1; $i <=$numBottles;$i++){
-    fwrite($file,"\\renewcommand{\bottleNumber}{".$i."}\n");
-    fwrite($file,$labelTemplate);
+    $label = "  \\makebox{
+    \\makebox[0mm]{
+      \\raisebox{15mm}{
+        \\hspace{40mm}
+        \\emph{Batch $batchNumber} \\hfill \\emph{Flaske $i}
+      }
+    }
+    \\makebox[0mm]{
+      \\raisebox{-14mm}{
+        \\hspace{15mm}
+        \\psbarcode{http://www.brutalzorz.org/index.php?ba=$batchNumber\&bo=$i}{height=1 width=1 eclevel=H}{qrcode}
+      }
+    }
+    \\makebox[0mm]{
+      \\raisebox{0mm}{
+        \\begin{rotate}{-90}
+          \\raggedleft
+          \\makebox[0mm]{
+            \\raisebox{36mm}{
+              $batchName
+            }
+          }
+       \\end{rotate}
+      }
+    }
+    \\makebox[0mm]{
+      \\raisebox{0mm}{
+        \\begin{rotate}{90} 
+          \\makebox[0mm]{
+            \\raisebox{-3mm}{
+              $brewDate
+            }
+          }
+        \\end{rotate}
+      }
+    }
+    \\makebox[0mm]{
+      \\raisebox{-20mm}{
+        \\hspace{40mm}
+        www.brutalzorz.org
+      }
+    }
+  }";
+      fwrite($file,$label."\n"."\n");
   }
   fwrite($file,"\\end{labels}
 \\end{document}");
 }
 
 fclose($file);
-
+exec("latex -interaction=nonstopmode ".$filename);
+exec("dvips ".$filename.".dvi "."-o ".$filename.".ps");
+exec("ps2pdf ".$filename.".ps ".$filename.".pdf");
+exec("evince ".$filename.".pdf");
 ?>
