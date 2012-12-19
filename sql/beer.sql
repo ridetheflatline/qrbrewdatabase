@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5deb1
+-- version 3.4.11.1deb1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Dec 12, 2012 at 10:26 PM
--- Server version: 5.1.61
--- PHP Version: 5.3.6-13ubuntu3.9
+-- Servidor: localhost
+-- Tiempo de generación: 18-12-2012 a las 22:49:26
+-- Versión del servidor: 5.5.28
+-- Versión de PHP: 5.4.6-1ubuntu1.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `beer`
+-- Base de datos: `beer`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `batches`
+-- Estructura de tabla para la tabla `batches`
 --
 
 CREATE TABLE IF NOT EXISTS `batches` (
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `batches` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `batches`
+-- Volcado de datos para la tabla `batches`
 --
 
 INSERT INTO `batches` (`batchNumber`, `batchName`, `batchCode`, `batchVolume`, `brewDate`) VALUES
@@ -45,19 +45,26 @@ INSERT INTO `batches` (`batchNumber`, `batchName`, `batchCode`, `batchVolume`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `boilings`
+-- Estructura de tabla para la tabla `boilings`
 --
 
 CREATE TABLE IF NOT EXISTS `boilings` (
   `boilNumber` int(11) NOT NULL AUTO_INCREMENT,
   `batchNumber` int(11) NOT NULL,
   PRIMARY KEY (`boilNumber`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `boilings`
+--
+
+INSERT INTO `boilings` (`boilNumber`, `batchNumber`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bottles`
+-- Estructura de tabla para la tabla `bottles`
 --
 
 CREATE TABLE IF NOT EXISTS `bottles` (
@@ -69,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `bottles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `bottles`
+-- Volcado de datos para la tabla `bottles`
 --
 
 INSERT INTO `bottles` (`bottleNumber`, `bottlingNumber`, `bottleVolume`, `bottleStatus`) VALUES
@@ -79,7 +86,7 @@ INSERT INTO `bottles` (`bottleNumber`, `bottlingNumber`, `bottleVolume`, `bottle
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bottlings`
+-- Estructura de tabla para la tabla `bottlings`
 --
 
 CREATE TABLE IF NOT EXISTS `bottlings` (
@@ -92,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `bottlings` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `bottlings`
+-- Volcado de datos para la tabla `bottlings`
 --
 
 INSERT INTO `bottlings` (`bottlingNumber`, `bottlesUsed`, `bottledVolume`, `batchNumber`, `bottleDate`) VALUES
@@ -102,7 +109,7 @@ INSERT INTO `bottlings` (`bottlingNumber`, `bottlesUsed`, `bottledVolume`, `batc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hoppings`
+-- Estructura de tabla para la tabla `hoppings`
 --
 
 CREATE TABLE IF NOT EXISTS `hoppings` (
@@ -112,12 +119,21 @@ CREATE TABLE IF NOT EXISTS `hoppings` (
   `hopMass` int(11) NOT NULL,
   `boilNumber` int(11) NOT NULL,
   PRIMARY KEY (`hopNumber`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `hoppings`
+--
+
+INSERT INTO `hoppings` (`hopNumber`, `hopType`, `boilTime`, `hopMass`, `boilNumber`) VALUES
+(1, 'Styrian Golding', 60, 30, 1),
+(2, 'Saaz', 15, 30, 1),
+(3, 'Fuggles', 5, 25, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keggings`
+-- Estructura de tabla para la tabla `keggings`
 --
 
 CREATE TABLE IF NOT EXISTS `keggings` (
@@ -127,39 +143,61 @@ CREATE TABLE IF NOT EXISTS `keggings` (
   `batchNumber` int(11) NOT NULL,
   `kegDate` date NOT NULL,
   PRIMARY KEY (`keggingNumber`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `keggings`
+--
+
+INSERT INTO `keggings` (`keggingNumber`, `kegUsed`, `keggedVolume`, `batchNumber`, `kegDate`) VALUES
+(1, 'virtualTestKeg', 5, 1, '2012-12-04');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `maltAdds`
+-- Estructura de tabla para la tabla `maltAdds`
 --
 
 CREATE TABLE IF NOT EXISTS `maltAdds` (
   `maltAddNumber` int(11) NOT NULL AUTO_INCREMENT,
   `mashNumber` int(11) NOT NULL,
   `maltType` text NOT NULL,
-  `maltMass` int(11) NOT NULL,
+  `maltMass` float NOT NULL,
   `mashTime` int(11) NOT NULL,
   PRIMARY KEY (`maltAddNumber`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `maltAdds`
+--
+
+INSERT INTO `maltAdds` (`maltAddNumber`, `mashNumber`, `maltType`, `maltMass`, `mashTime`) VALUES
+(1, 1, 'Brent kveitemalt.', 4.54, 60),
+(2, 1, 'Spelt', 2, 60);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mashings`
+-- Estructura de tabla para la tabla `mashings`
 --
 
 CREATE TABLE IF NOT EXISTS `mashings` (
   `mashNumber` int(11) NOT NULL AUTO_INCREMENT,
   `batchNumber` int(11) NOT NULL,
   PRIMARY KEY (`mashNumber`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `mashings`
+--
+
+INSERT INTO `mashings` (`mashNumber`, `batchNumber`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mashStages`
+-- Estructura de tabla para la tabla `mashStages`
 --
 
 CREATE TABLE IF NOT EXISTS `mashStages` (
@@ -169,12 +207,19 @@ CREATE TABLE IF NOT EXISTS `mashStages` (
   `time` int(11) NOT NULL,
   `temp` int(11) NOT NULL,
   PRIMARY KEY (`mashStageNumber`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `mashStages`
+--
+
+INSERT INTO `mashStages` (`mashStageNumber`, `mashNumber`, `mashStage`, `time`, `temp`) VALUES
+(1, 1, 1, 60, 67);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `scanLog`
+-- Estructura de tabla para la tabla `scanLog`
 --
 
 CREATE TABLE IF NOT EXISTS `scanLog` (
@@ -187,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `scanLog` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `scanLog`
+-- Volcado de datos para la tabla `scanLog`
 --
 
 INSERT INTO `scanLog` (`scanNumber`, `scanStatus`, `scanTimeStamp`, `bottleNumber`) VALUES
