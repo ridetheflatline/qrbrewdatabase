@@ -1,4 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BEER!</title>
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="css/bootstrap-responsive.css" rel="stylesheet" />
+</head>
+<body>
 <?php
+$batchNumber = $_GET["batchNumber"];
+$numBottles = $_GET["numBottles"];
+if (!isset($_GET['submit'])) 
+  { // if page is not submitted to itself echo the form
+?>
+
+<form class="well" method="get" action=<php echo $PHP_SELF;?>">  
+<label>Batch print form</label>
+<input type="text" class="span3" placeholder="Batch number...">
+  <span class="help-inline">Type batch number in the text-field.</span>
+  <label class="span3">
+    <input type="text"> 
+  </label>
+  <button type="submit" class="btn">Submit</button>
+</form>
+
+<?php
+}
+else 
+{
+$con = mysql_connect("localhost","beer","cerveza");
+if (!$con)
+  {
+    die('Could not connect: ' . mysql_error());
+  }
+$batch = $_GET["batch"];
+mysql_select_db("beer",$con);
+$batchData = mysql_query("SELECT * FROM batches WHERE batchNumber = $batch");
 $batchNumber=14;
 $batchName="Sturdy little helper";
 $numBottles=4;
@@ -22,7 +60,7 @@ $preamble = "\\documentclass[a4paper,12pt]{article}
 \\BottomPageMargin=13.5mm
 \\InterLabelColumn=6mm
 \\InterLabelRow=6mm
-\\LeftLabelBorder=mm
+\\LeftLabelBorder=0mm
 \\RightLabelBorder=0mm
 \\TopLabelBorder=0mm
 \\BottomLabelBorder=0mm
@@ -92,4 +130,17 @@ exec("latex -interaction=nonstopmode ".$filename);
 exec("dvips ".$filename.".dvi "."-o ".$filename.".ps");
 exec("ps2pdf ".$filename.".ps ".$filename.".pdf");
 exec("evince ".$filename.".pdf");
+}
 ?>
+      <p>
+	<a class="btn btn-primary btn-large">
+	  Learn more
+	</a>
+	<a class="btn btn-large">
+	  Leave a message
+	</a>
+      </p>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
