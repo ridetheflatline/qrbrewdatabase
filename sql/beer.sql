@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-12-2012 a las 22:49:26
+-- Tiempo de generación: 13-01-2013 a las 22:31:38
 -- Versión del servidor: 5.5.28
 -- Versión de PHP: 5.4.6-1ubuntu1.1
 
@@ -69,6 +69,7 @@ INSERT INTO `boilings` (`boilNumber`, `batchNumber`) VALUES
 
 CREATE TABLE IF NOT EXISTS `bottles` (
   `bottleNumber` int(11) NOT NULL AUTO_INCREMENT,
+  `bottleId` int(11) NOT NULL,
   `bottlingNumber` int(11) NOT NULL,
   `bottleVolume` float NOT NULL DEFAULT '0.5',
   `bottleStatus` text NOT NULL,
@@ -79,9 +80,9 @@ CREATE TABLE IF NOT EXISTS `bottles` (
 -- Volcado de datos para la tabla `bottles`
 --
 
-INSERT INTO `bottles` (`bottleNumber`, `bottlingNumber`, `bottleVolume`, `bottleStatus`) VALUES
-(1, 1, 0.5, 'Printed'),
-(2, 1, 0.5, 'Printed');
+INSERT INTO `bottles` (`bottleNumber`, `bottleId`, `bottlingNumber`, `bottleVolume`, `bottleStatus`) VALUES
+(1, 0, 1, 0.5, 'Printed'),
+(2, 0, 1, 0.5, 'Printed');
 
 -- --------------------------------------------------------
 
@@ -105,6 +106,34 @@ CREATE TABLE IF NOT EXISTS `bottlings` (
 INSERT INTO `bottlings` (`bottlingNumber`, `bottlesUsed`, `bottledVolume`, `batchNumber`, `bottleDate`) VALUES
 (1, 20, 10, 1, '2012-12-10'),
 (2, 10, 5.5, 1, '2012-12-11');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `commenters`
+--
+
+CREATE TABLE IF NOT EXISTS `commenters` (
+  `commenterId` int(11) NOT NULL AUTO_INCREMENT,
+  `commenterName` text COLLATE utf8_swedish_ci NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`commenterId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comments`
+--
+
+CREATE TABLE IF NOT EXISTS `comments` (
+  `commentId` int(11) NOT NULL,
+  `commentText` text COLLATE utf8_swedish_ci NOT NULL,
+  `commenterId` int(11) NOT NULL,
+  `batchNumber` int(11) NOT NULL,
+  `bottleNumber` int(11) NOT NULL,
+  PRIMARY KEY (`commentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -215,6 +244,20 @@ CREATE TABLE IF NOT EXISTS `mashStages` (
 
 INSERT INTO `mashStages` (`mashStageNumber`, `mashNumber`, `mashStage`, `time`, `temp`) VALUES
 (1, 1, 1, 60, 67);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `queries`
+--
+
+CREATE TABLE IF NOT EXISTS `queries` (
+  `queryNumber` int(11) NOT NULL AUTO_INCREMENT,
+  `batchNumber` int(11) NOT NULL,
+  `bottleNumber` int(11) NOT NULL,
+  `queryTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`queryNumber`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

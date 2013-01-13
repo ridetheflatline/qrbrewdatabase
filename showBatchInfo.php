@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>BEER!</title>
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet" media="screen" />
@@ -51,13 +52,37 @@
 	<a class="btn btn-primary btn-large">
 	  Learn more
 	</a>
-	<a class="btn btn-large">
-	  Leave a message
-	</a>
-      </p>
-    </center>
-  </div>
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+	<form>
+		<!-- Button to trigger modal -->
+    <a href="#myModal" role="button" class="btn btn-large" data-toggle="modal">Launch demo modal</a>
+    
+    <!-- Modal -->
+    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h3 id="myModalLabel">Modal header</h3>
+    </div>
+    <div class="modal-body">
+	<fieldset>
+	  <legend>Legend</legend>
+	  <label>Label name</label>
+	  <input type="textarea" placeholder="Type something…">
+	    <span class="help-block">Example block-level help text here.</span>
+	    <label class="checkbox">Example
+    <input type="checkbox"> Check me out
+    </label>
+    </fieldset>
+</div>
+<div class="modal-footer">
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</form>
+</div>
+</p>
+</center>
+</div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
