@@ -1,0 +1,68 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[nynorsk]{babel}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[newdimens]{labels}
+\usepackage{rotating}
+\usepackage{pst-barcode}
+\LabelCols=4
+\LabelRows=6
+\LeftPageMargin=15mm
+\RightPageMargin=15mm
+\TopPageMargin=13.5mm
+\BottomPageMargin=13.5mm
+\InterLabelColumn=6mm
+\InterLabelRow=6mm
+\LeftLabelBorder=1mm
+\RightLabelBorder=1mm
+\TopLabelBorder=0mm
+\BottomLabelBorder=0mm
+\begin{document}
+\tiny
+\begin{labels}
+  \makebox{
+    \makebox[0mm]{
+      \raisebox{15mm}{
+        \hspace{40mm}
+        \emph{Batch \#132} \hfill \emph{Flaske \#132}
+      }
+    }
+    \makebox[0mm]{
+      \raisebox{-14mm}{
+        \hspace{15mm}
+        \psbarcode{http://www.brutalzorz.org}{height=1 width=1 eclevel=H}{qrcode}
+      }
+    }
+    \makebox[0mm]{
+      \raisebox{0mm}{
+        \begin{rotate}{-90}
+          \raggedleft
+          \makebox[0mm]{
+            \raisebox{36mm}{
+              Juleøl (SLH)
+            }
+          }
+        \end{rotate}
+      }
+    }
+    \makebox[0mm]{
+      \raisebox{0mm}{
+        \begin{rotate}{90} 
+          \makebox[0mm]{
+            \raisebox{-2mm}{
+              \today
+            }
+          }
+        \end{rotate}
+      }
+    }
+    \makebox[0mm]{
+      \raisebox{-20mm}{
+        \hspace{40mm}
+        www.brutalzorz.org
+      }
+    }
+  }
+\end{labels}
+\end{document}
