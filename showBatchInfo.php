@@ -10,6 +10,7 @@
 </head>
 <body>
   <?php
+    include("navBar.php");
     $con = mysql_connect("localhost","beer","cerveza");
     if (!$con)
       {
