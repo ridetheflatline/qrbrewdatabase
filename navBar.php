@@ -5,11 +5,11 @@
       <ul class="nav">
       <?php
 	include("createNav.php");
-	echo createNav("Home","/php/index.php");
-	echo createNav("About","/php/about.php");
-	echo createNav("Products","/php/products.php");
-	echo createNav("Contact","/php/contact.php");
-	echo createNav("Brew info","/php/showBatchInfo.php");
+	echo createNav("Home","/qr/index.php");
+	echo createNav("About","/qr/about.php");
+	echo createNav("Products","/qr/products.php");
+	echo createNav("Contact","/qr/contact.php");
+	echo createNav("Brew info","/qr/showBatchInfo.php");
 	?>
       </ul>
     </div>
