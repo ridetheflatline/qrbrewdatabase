@@ -75,6 +75,7 @@ DROP TABLE IF EXISTS `bottles`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bottles` (
   `bottleNumber` int(11) NOT NULL AUTO_INCREMENT,
+  `bottleId` int(11) NOT NULL,
   `bottlingNumber` int(11) NOT NULL,
   `bottleVolume` float NOT NULL DEFAULT '0.5',
   `bottleStatus` text NOT NULL,
@@ -88,7 +89,7 @@ CREATE TABLE `bottles` (
 
 LOCK TABLES `bottles` WRITE;
 /*!40000 ALTER TABLE `bottles` DISABLE KEYS */;
-INSERT INTO `bottles` VALUES (1,1,0.5,'Printed'),(2,1,0.5,'Printed');
+INSERT INTO `bottles` VALUES (1,0,1,0.5,'Printed'),(2,0,1,0.5,'Printed');
 /*!40000 ALTER TABLE `bottles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,6 +118,56 @@ LOCK TABLES `bottlings` WRITE;
 /*!40000 ALTER TABLE `bottlings` DISABLE KEYS */;
 INSERT INTO `bottlings` VALUES (1,20,10,1,'2012-12-10'),(2,10,5.5,1,'2012-12-11');
 /*!40000 ALTER TABLE `bottlings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `commenters`
+--
+
+DROP TABLE IF EXISTS `commenters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `commenters` (
+  `commenterId` int(11) NOT NULL AUTO_INCREMENT,
+  `commenterName` text COLLATE utf8_swedish_ci NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`commenterId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `commenters`
+--
+
+LOCK TABLES `commenters` WRITE;
+/*!40000 ALTER TABLE `commenters` DISABLE KEYS */;
+/*!40000 ALTER TABLE `commenters` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comments`
+--
+
+DROP TABLE IF EXISTS `comments`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comments` (
+  `commentId` int(11) NOT NULL,
+  `commentText` text COLLATE utf8_swedish_ci NOT NULL,
+  `commenterId` int(11) NOT NULL,
+  `batchNumber` int(11) NOT NULL,
+  `bottleNumber` int(11) NOT NULL,
+  PRIMARY KEY (`commentId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comments`
+--
+
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -252,6 +303,31 @@ LOCK TABLES `mashings` WRITE;
 /*!40000 ALTER TABLE `mashings` DISABLE KEYS */;
 INSERT INTO `mashings` VALUES (1,1),(2,18);
 /*!40000 ALTER TABLE `mashings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `queries`
+--
+
+DROP TABLE IF EXISTS `queries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `queries` (
+  `queryNumber` int(11) NOT NULL AUTO_INCREMENT,
+  `batchNumber` int(11) NOT NULL,
+  `bottleNumber` int(11) NOT NULL,
+  `queryTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`queryNumber`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `queries`
+--
+
+LOCK TABLES `queries` WRITE;
+/*!40000 ALTER TABLE `queries` DISABLE KEYS */;
+/*!40000 ALTER TABLE `queries` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
