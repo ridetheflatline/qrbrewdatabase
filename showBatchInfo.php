@@ -45,7 +45,7 @@
 	      echo "<br>";
 	      echo "We brewed it <i>" . date("l jS \of F Y", mktime(0,0,0,$date['month'],$date['day'],$date['year'])) . ".</i>";
 	      echo "<br>";
-              if($bottle)
+              if($bottleStuff)
 	        echo "The bottle is number <i>" . $bottleStuff['bottleNumber'] . "</i> out of <i>" . $bottling['bottlesUsed'] . "</i>.";
 	    }
 	?>
