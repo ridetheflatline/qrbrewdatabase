@@ -33,7 +33,7 @@
       <p>
 	<?php
 	  $date = date_parse($row['brewDate']);
-	  if(!$row or !$bottleStuff)
+	  if(!$row)
 	    {
 	      echo "Batch not found";
 	    }
@@ -45,9 +45,10 @@
 	      echo "<br>";
 	      echo "We brewed it <i>" . date("l jS \of F Y", mktime(0,0,0,$date['month'],$date['day'],$date['year'])) . ".</i>";
 	      echo "<br>";
-	      echo "The bottle is number <i>" . $bottleStuff['bottleNumber'] . "</i> out of <i>" . $bottling['bottlesUsed'] . "</i>.";
+              if($bottle)
+	        echo "The bottle is number <i>" . $bottleStuff['bottleNumber'] . "</i> out of <i>" . $bottling['bottlesUsed'] . "</i>.";
 	    }
-	?> 
+	?>
       </p>
       <p>
 	<a class="btn btn-primary btn-large">
@@ -85,6 +86,7 @@
 </p>
 </center>
 </div>
+<?php include("reagentTables.php"); ?>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
