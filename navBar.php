@@ -4,13 +4,22 @@
       <a class="brand" href="#">Birra!</a>
       <ul class="nav">
       <?php
-	include("createNav.php");
-	echo createNav("Home","/qr/index.php");
-	echo createNav("About","/qr/about.php");
-	echo createNav("Products","/qr/products.php");
-	echo createNav("Contact","/qr/contact.php");
-	echo createNav("Brew info","/qr/showBatchInfo.php");
-	?>
+				include("createNav.php");
+				echo createNav("Home","/qr/index.php");
+				echo createNav("About","/qr/about.php");
+				echo createNav("Products","/qr/products.php");
+				echo createNav("Contact","/qr/contact.php");
+				echo createNav("Brew info","/qr/showBatchInfo.php");
+			?>
+	  					<li class="dropdown">
+				   	 	<a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">
+			      	Account
+			     	 	<b class="caret"></b>
+    					</a>
+    					<ul class="dropdown-menu pull-right">
+      				Login
+    					</ul>
+  						</li>
       </ul>
     </div>
   </div>
