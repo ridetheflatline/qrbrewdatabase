@@ -22,7 +22,9 @@
 <body>
   <div class="hero-unit">
     <center>
-      <h1>Welcome!</h1>
+      <h2>Welcome!</h2>
       <p>Greetings to you my friend
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

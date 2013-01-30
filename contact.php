@@ -8,13 +8,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
 </head>
+<body>
 <?php
 include("navBar.php");
 ?>
-<body>
   <div class="hero-unit">
     <center>
-      <h1>Contact info</h1>
+      <h2>Contact info</h2>
       <p>Please don't contact us....
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

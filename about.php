@@ -16,5 +16,7 @@ include("navBar.php");
     <center>
       <h1>About</h1>
       <p>This is what it's all about!
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

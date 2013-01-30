@@ -29,7 +29,7 @@
   ?>
   <div class="hero-unit">
     <center>
-      <h1>Brew info</h1>
+      <h2>Brew info</h2>
       <p>
 	<?php
 	  $date = date_parse($row['brewDate']);
