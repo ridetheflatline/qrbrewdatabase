@@ -15,6 +15,8 @@ include("navBar.php");
   <div class="hero-unit">
     <center>
       <h1>Products</h1>
-      <p>The fruit of our labor.
+      <p>The fruits of our labor.
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
