@@ -26,7 +26,6 @@
     </fieldset>
 </div>
 <div class="modal-footer">
-  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
   <button type="submit" class="btn btn-primary">Submit</button>
 </div>
 </form>
