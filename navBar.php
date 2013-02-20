@@ -1,7 +1,7 @@
 <div class="container">
   <div class="navbar">
     <div class="navbar-inner">
-      <a class="brand" href="#">Birra!</a>
+      <a class="brand" href="index.php">Birra!</a>
       <ul class="nav">
       <?php
 				//echo createNav("Home","/qr/index.php");
@@ -11,17 +11,24 @@
 				echo createNav("Contact","/qr/contact.php");
 			?>
       </ul>
+			<center>
      	<ul class="nav pull-right">
       	<li id="fat-menu" class="dropdown">
-          <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Account<b class="caret"></b></a>
-          <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
-          <li><a tabindex="-1" href="#">Login</a></li>
-          <!--<li><a tabindex="-1" href="#">Another action</a></li>
-          <li><a tabindex="-1" href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a tabindex="-1" href="#">Separated link</a></li>-->
+         
+					<?php
+					session_start();
+					if(!isset($_SESSION['SESS_MEMBER_ID']) || (trim($_SESSION['SESS_MEMBER_ID']) == ''))
+						include("navBarNoUser.php");
+					else
+					{
+						echo '<a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION['SESS_FIRST_NAME'].'<b class="caret"></b></a>';
+						echo '<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">';
+						echo '<li><a href="PHP-Login/logout.php" type="submit" name="Submit" value="Logout">Logout</a></li>';
+					}
+					?>	
           </ul>
         </li>
+			</center>
       </ul>			
     </div>
   </div>

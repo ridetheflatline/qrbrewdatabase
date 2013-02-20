@@ -27,8 +27,11 @@
 	{
 	  echo "<tr>";
 			echo '<td>';
-				echo '<i class="icon-remove"></i>&nbsp;';
-				echo '<i class="icon-pencil"></i>&nbsp;';
+				if(isset($_SESSION['SESS_MEMBER_ID']))
+				{
+					echo '<i class="icon-remove"></i>&nbsp;';
+					echo '<i class="icon-pencil"></i>&nbsp;';
+				}
 				echo '<A HREF="showBatchInfo.php?batch='.mysql_result($maltResults,$i,"batchNumber").'"><i class="icon-eye-open"></i></a>';
 				echo '</td>';
 	    echo '<td>' .mysql_result($maltResults,$i,"batchNumber").'</td>';
