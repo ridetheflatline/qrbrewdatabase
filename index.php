@@ -1,7 +1,15 @@
 <?php
 	include("header.php");
-  $batch = $_GET["batch"];
-  $bottle = $_GET["bottle"];
+		if(isset($_GET['batch']))
+  		$batch = $_GET["batch"];
+		else
+			$batch = FALSE;
+
+		if(isset($_GET['bottle']))
+  		$bottle = $_GET["bottle"];
+		else
+			$bottle = FALSE;
+
   if($batch!=0)
   {
     if($bottle==0)
