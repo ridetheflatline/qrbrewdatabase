@@ -6,7 +6,7 @@ include("navBar.php");
     <center>
       <h2>Contact info</h2>
       <p>Please don't contact us....
-
+	</div>
 <?php
 include("footer.php");
 ?>
