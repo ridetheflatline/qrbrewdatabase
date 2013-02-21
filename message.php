@@ -16,6 +16,11 @@ echo '<body>';
 				echo '<h2>Welcome ' .$_SESSION['SESS_FIRST_NAME'].' </h2>';
       	echo '<p>Your login was successful.';
 			}			
+			else if($message=="RegSuccess")
+			{
+				echo '<h2>Registration successful!</h2>';
+      	echo '<p>But you are not logged in yet.';
+			}		
 			else if($message=="Logout")
 			{
 				echo '<h2> Logged out. </h2>';
