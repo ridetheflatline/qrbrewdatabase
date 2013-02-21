@@ -1,11 +1,3 @@
-<?php
-  $result = mysql_query("SELECT boilNumber FROM boilings WHERE batchNumber=$batch");
-  $resultArray = mysql_fetch_array($result);
-  $boilNumber = $resultArray['boilNumber'];
-  $result = mysql_query("SELECT mashNumber FROM mashings WHERE batchNumber=$batch");
-  $resultArray = mysql_fetch_array($result);
-  $mashNumber = $resultArray['mashNumber'];
-?>
 <h2> Batches: </h2>
 <table class="table table-striped">
         <thead>

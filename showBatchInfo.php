@@ -17,14 +17,23 @@
 	die('Could not connect: ' . mysql_error());
       }
       mysql_select_db("beer", $con);
-      $batch = $_GET["batch"];
+			if(isset($_GET['batch']))
+	      $batch = $_GET["batch"];
+			else
+				$batch = FALSE;
+
 			if(isset($_GET['bottle']))
       	$bottle = $_GET["bottle"];
 			else
 				$bottle = FALSE;
+
       $result = mysql_query("SELECT * FROM batches WHERE batchNumber = $batch");
-      $row = mysql_fetch_array($result);
-      $result = mysql_query("SELECT * FROM bottles WHERE bottleNumber = $bottle");
+			if($result !== FALSE)
+      	$row = mysql_fetch_array($result);
+			else
+				$row = FALSE;
+
+     	$result = mysql_query("SELECT * FROM bottles WHERE bottleNumber = $bottle");
 			if($result !== FALSE) {
 	      $bottleStuff = mysql_fetch_array($result);
 	      $bottlingNumber = $bottleStuff['bottlingNumber'];

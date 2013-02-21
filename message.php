@@ -13,7 +13,6 @@ echo '<body>';
 			}			
 			else if($message=="LoginSuccess")
 			{
-				session_start();
 				echo '<h2>Welcome ' .$_SESSION['SESS_FIRST_NAME'].' </h2>';
       	echo '<p>Your login was successful.';
 			}			
