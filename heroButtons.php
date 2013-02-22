@@ -3,8 +3,8 @@
 	  Learn more
 	</a>
 	<form action="feedback.php" method="post">
-	  <input name="batch" type="hidden" value="<?php echo htmlspecialchars($_GET['batch'], ENT_QUOTES); ?>">
-	  <input name="bottle" type="hidden" value="<?php echo htmlspecialchars($_GET['bottle'], ENT_QUOTES); ?>"> 
+	  <input name="batch" type="hidden" value="<?php if(isset($_GET['batch'])) echo htmlspecialchars($_GET['batch'], ENT_QUOTES); ?>">
+	  <input name="bottle" type="hidden" value="<?php if(isset($_GET['bottle'])) echo htmlspecialchars($_GET['bottle'], ENT_QUOTES); ?>"> 
 
 		<!-- Button to trigger modal -->
     <a href="#myModal" role="button" class="btn btn-large" data-toggle="modal">Leave message</a>

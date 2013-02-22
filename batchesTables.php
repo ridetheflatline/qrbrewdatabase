@@ -1,11 +1,3 @@
-<?php
-  $result = mysql_query("SELECT boilNumber FROM boilings WHERE batchNumber=$batch");
-  $resultArray = mysql_fetch_array($result);
-  $boilNumber = $resultArray['boilNumber'];
-  $result = mysql_query("SELECT mashNumber FROM mashings WHERE batchNumber=$batch");
-  $resultArray = mysql_fetch_array($result);
-  $mashNumber = $resultArray['mashNumber'];
-?>
 <h2> Batches: </h2>
 <table class="table table-striped">
         <thead>
@@ -27,8 +19,11 @@
 	{
 	  echo "<tr>";
 			echo '<td>';
-				echo '<i class="icon-remove"></i>&nbsp;';
-				echo '<i class="icon-pencil"></i>&nbsp;';
+				if(isset($_SESSION['SESS_MEMBER_ID']))
+				{
+					echo '<i class="icon-remove"></i>&nbsp;';
+					echo '<i class="icon-pencil"></i>&nbsp;';
+				}
 				echo '<A HREF="showBatchInfo.php?batch='.mysql_result($maltResults,$i,"batchNumber").'"><i class="icon-eye-open"></i></a>';
 				echo '</td>';
 	    echo '<td>' .mysql_result($maltResults,$i,"batchNumber").'</td>';
