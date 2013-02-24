@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: beer
 -- ------------------------------------------------------
--- Server version	5.5.29-0ubuntu0.12.04.1
+-- Server version	5.5.29-0ubuntu0.12.10.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -132,7 +132,7 @@ CREATE TABLE `commenters` (
   `commenterName` text COLLATE utf8_swedish_ci NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`commenterId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,6 +141,7 @@ CREATE TABLE `commenters` (
 
 LOCK TABLES `commenters` WRITE;
 /*!40000 ALTER TABLE `commenters` DISABLE KEYS */;
+INSERT INTO `commenters` VALUES (1,'nosa','2013-02-24 16:57:11'),(9,'nasa','2013-02-24 21:15:52'),(10,'lakselus','2013-02-24 21:44:58'),(11,'Rema-reitan','2013-02-24 21:57:14');
 /*!40000 ALTER TABLE `commenters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,13 +153,14 @@ DROP TABLE IF EXISTS `comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comments` (
-  `commentId` int(11) NOT NULL,
+  `commentId` int(11) NOT NULL AUTO_INCREMENT,
   `commentText` text COLLATE utf8_swedish_ci NOT NULL,
   `commenterId` int(11) NOT NULL,
   `batchNumber` int(11) NOT NULL,
   `bottleNumber` int(11) NOT NULL,
+  `member_id` int(11) NOT NULL,
   PRIMARY KEY (`commentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,6 +169,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+INSERT INTO `comments` VALUES (1,'kjem denne kommentaren igjennom?	  ',1,1,0,0),(2,'kjem denne kommentaren igjennom?	  ',1,1,0,0),(3,'	  haha',0,1,0,6),(4,'	  haha',0,1,0,6),(5,'	  andre kommentar frÃ¥ nosa',1,1,0,0),(6,'Hei, eg er broren til nosa. Eg syns det er godt med TestBrew!	  ',0,1,0,0),(10,'Hei, eg er broren til nosa. Eg syns det er godt med TestBrew!	  ',9,1,0,0),(11,'Pisspils er eigentleg min favoritt.',10,1,0,0),(12,'Bare er best.',11,1,0,0),(13,'Bare er best.',11,1,0,0);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -320,7 +323,7 @@ CREATE TABLE `members` (
   `passwd` varchar(32) NOT NULL DEFAULT '',
   `email` text,
   PRIMARY KEY (`member_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,7 +332,7 @@ CREATE TABLE `members` (
 
 LOCK TABLES `members` WRITE;
 /*!40000 ALTER TABLE `members` DISABLE KEYS */;
-INSERT INTO `members` VALUES (2,'Foo','Bar','User','dc647eb65e6711e155375218212b3964',NULL),(3,'Test','Test','test','1a1dc91c907325c69271ddf0c944bc72',NULL),(4,'Dagfinn','Reiakvam','Dagfinn','1a1dc91c907325c69271ddf0c944bc72','dagfinn@reiakvam.no');
+INSERT INTO `members` VALUES (2,'Foo','Bar','User','dc647eb65e6711e155375218212b3964',NULL),(3,'Test','Test','test','1a1dc91c907325c69271ddf0c944bc72',NULL),(4,'Dagfinn','Reiakvam','Dagfinn','1a1dc91c907325c69271ddf0c944bc72','dagfinn@reiakvam.no'),(5,'Kim','HaugsbÃ¸','kimh','24ac62a38bd755f58da123f516376a3f','kimrunarsh@gmail.com'),(6,'kim','runar','kim','24ac62a38bd755f58da123f516376a3f','kimrunarsh@gmail.com');
 /*!40000 ALTER TABLE `members` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -394,4 +397,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-21 22:42:04
+-- Dump completed on 2013-02-24 23:00:26
