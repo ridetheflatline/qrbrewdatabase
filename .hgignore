@@ -1,2 +1,15 @@
+.hgignore
+#.\#**
 syntax: glob
-*.php~
+*.orig
+*.rej
+*~
+*.o
+#.\#*
+tests/*.err
+logs/*
+qr
+qr.pdf
+syntax: regexp
+.*\#.*\#$
+\.*\#.*$
