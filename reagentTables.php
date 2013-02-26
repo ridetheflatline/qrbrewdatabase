@@ -6,7 +6,10 @@
   $resultArray = mysql_fetch_array($result);
   $mashNumber = $resultArray['mashNumber'];
 ?>
+<div class="row">    
+<div class="span6">
 <h2> Malt: </h2>
+
 <table class="table table-striped">
         <thead>
           <tr>
@@ -32,6 +35,9 @@
 	?>
         </tbody>
       </table>
+		</div>
+
+    <div class="span6">
 <h2> Mash: </h2>
 <table class="table table-striped">
         <thead>
@@ -58,6 +64,8 @@
 	?>
         </tbody>
       </table>
+		</div>
+    </div>
 <h2> Hops: </h2>
 <table class="table table-striped">
         <thead>
