@@ -12,27 +12,40 @@
         </thead>
         <tbody>
 	<?php
-        $maltResults = mysql_query("SELECT * FROM batches");
+  $maltResults = mysql_query("SELECT * FROM batches");
 	$num = mysql_numrows($maltResults);
+	if(isset($_SESSION['SESS_MEMBER_ID']))
+		$member_id = $_SESSION['SESS_MEMBER_ID'];
+	else
+		$member_id = 0;
 	$i=0;
 	while($i < $num)
 	{
-	  echo "<tr>";
-			echo '<td>';
-				if(isset($_SESSION['SESS_MEMBER_ID']))
-				{
-					echo '<i class="icon-remove"></i>&nbsp;';
-					echo '<i class="icon-pencil"></i>&nbsp;';
-				}
-				echo '<A HREF="showBatchInfo.php?batch='.mysql_result($maltResults,$i,"batchNumber").'"><i class="icon-eye-open"></i></a>';
-				echo '</td>';
-	    echo '<td>' .mysql_result($maltResults,$i,"batchNumber").'</td>';
-	    echo "<td>" .mysql_result($maltResults,$i,"batchName"). "</td>";
-	    echo "<td>" .mysql_result($maltResults,$i,"batchCode"). "</td>";
-			echo "<td>" .mysql_result($maltResults,$i,"batchVolume"). "</td>";
-			echo "<td>" .mysql_result($maltResults,$i,"brewDate"). "</td>";
-	  echo "</tr>";
-	  $i++;
+		$batchNr = mysql_result($maltResults,$i,"batchNumber");
+		$accessResults = mysql_query("SELECT * from batchAccess where member_id=$member_id and batchNumber=$batchNr");
+		if(mysql_numrows($accessResults) !== 0)
+			$level = mysql_result($accessResults,0,"level");
+		else
+			$level = FALSE;
+
+		if((mysql_result($maltResults,$i,"public") == 1) || $level)
+			{
+	  	echo "<tr>";
+				echo '<td>';
+					if($level == "Creator")
+						echo '<i class="icon-remove"></i>&nbsp;';
+					if($level == "Creator" || $level == "Editer")
+						echo '<i class="icon-pencil"></i>&nbsp;';
+					echo '<A HREF="showBatchInfo.php?batch='.mysql_result($maltResults,$i,"batchNumber").'"><i class="icon-eye-open"></i></a>';
+					echo '</td>';
+	  	  echo '<td>' .mysql_result($maltResults,$i,"batchNumber").'</td>';
+	  	  echo "<td>" .mysql_result($maltResults,$i,"batchName"). "</td>";
+	  	  echo "<td>" .mysql_result($maltResults,$i,"batchCode"). "</td>";
+				echo "<td>" .mysql_result($maltResults,$i,"batchVolume"). "</td>";
+				echo "<td>" .mysql_result($maltResults,$i,"brewDate"). "</td>";
+	  	echo "</tr>";
+			}	  
+		$i++;
 	}
 	?>
         </tbody>

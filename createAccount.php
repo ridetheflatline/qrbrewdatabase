@@ -32,7 +32,7 @@ include("navBar.php");
       <td><input name="email" type="text" class="textfield" id="email" /></td>
     </tr>
     <tr>
-      <th width="124">Login</th>
+      <th width="124">Username</th>
       <td width="168"><input name="login" type="text" class="textfield" id="login" /></td>
     </tr>
     <tr>
