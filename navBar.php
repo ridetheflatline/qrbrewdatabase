@@ -24,6 +24,7 @@
 						echo '<a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">'.$_SESSION['SESS_FIRST_NAME'].'<b class="caret"></b></a>';
 						echo '<ul class="dropdown-menu" role="menu" aria-labelledby="drop3">';
 						echo '<li><a href="newBatch.php" type="submit" name="Submit" value="createBatch">New batch</a></li>';
+						echo '<li><a href="account.php" type="submit" name="Submit" value="account">Account</a></li>';
 						echo '<li class="divider"></li>';
 						echo '<li><a href="Login/logout.php" type="submit" name="Submit" value="Logout">Logout</a></li>';
 					}
