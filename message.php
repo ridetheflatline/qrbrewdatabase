@@ -26,6 +26,11 @@ echo '<body>';
 				echo '<h2> Logged out. </h2>';
       	echo '<p>You are now logged out.';
 			}			
+			else if($message=="NotLoggedIn")
+			{
+				echo '<h2>Not logged in</h2>';
+      	echo '<p>Please log in to access account details.';
+			}			
 			else
 			{
       	echo '<h2>Unknown error</h2>';
