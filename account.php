@@ -1,6 +1,14 @@
 <?php
-include("header.php");
-include("navBar.php");
+	include("header.php");
+	include("navBar.php");
+	$beerDb = mysql_connect("localhost","beer","cerveza");
+	if (!$beerDb)
+		die('Could not connect: ' . mysql_error());
+
+	if(isset($_SESSION['SESS_MEMBER_ID']))
+		echo '<p>ID: ' .$_SESSION['SESS_MEMBER_ID']. '</p>';
+	else
+		header("location: message.php?message=NotLoggedIn");
 ?>
   <div class="hero-unit">
     <center>
