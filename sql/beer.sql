@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: beer
 -- ------------------------------------------------------
--- Server version	5.5.29-0ubuntu0.12.10.1
+-- Server version	5.5.29-0ubuntu0.12.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,30 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `batchAccess`
+--
+
+DROP TABLE IF EXISTS `batchAccess`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `batchAccess` (
+  `batchNumber` int(11) DEFAULT NULL,
+  `member_id` int(11) DEFAULT NULL,
+  `level` enum('Creator','Editer','Viewer') DEFAULT 'Viewer'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `batchAccess`
+--
+
+LOCK TABLES `batchAccess` WRITE;
+/*!40000 ALTER TABLE `batchAccess` DISABLE KEYS */;
+INSERT INTO `batchAccess` VALUES (18,4,'Creator'),(15,4,'Editer'),(1,4,'Viewer');
+/*!40000 ALTER TABLE `batchAccess` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `batches`
@@ -28,6 +52,8 @@ CREATE TABLE `batches` (
   `batchCode` text NOT NULL,
   `batchVolume` float NOT NULL,
   `brewDate` date NOT NULL,
+  `public` tinyint(1) NOT NULL DEFAULT '0',
+  `state` enum('None','Deleted') NOT NULL DEFAULT 'None',
   UNIQUE KEY `batchNumber` (`batchNumber`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,7 +64,7 @@ CREATE TABLE `batches` (
 
 LOCK TABLES `batches` WRITE;
 /*!40000 ALTER TABLE `batches` DISABLE KEYS */;
-INSERT INTO `batches` VALUES (1,'TestBrew','TB',21.5,'2012-12-09'),(14,'Sturdy Little Helper','SLH',20,'2012-10-02'),(15,'Sturdy Santa','SSa',20,'2012-10-01'),(18,'Ã˜lhond IPA','Ã˜I',21.5,'2013-01-12');
+INSERT INTO `batches` VALUES (1,'TestBrew','TB',21.5,'2012-12-09',0,'None'),(14,'Sturdy Little Helper','SLH',20,'2012-10-02',1,'None'),(15,'Sturdy Santa','SSa',20,'2012-10-01',1,'None'),(18,'Ã˜lhond IPA','Ã˜I',21.5,'2013-01-12',1,'None');
 /*!40000 ALTER TABLE `batches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -332,7 +358,7 @@ CREATE TABLE `members` (
 
 LOCK TABLES `members` WRITE;
 /*!40000 ALTER TABLE `members` DISABLE KEYS */;
-INSERT INTO `members` VALUES (2,'Foo','Bar','User','dc647eb65e6711e155375218212b3964',NULL),(3,'Test','Test','test','1a1dc91c907325c69271ddf0c944bc72',NULL),(4,'Dagfinn','Reiakvam','Dagfinn','1a1dc91c907325c69271ddf0c944bc72','dagfinn@reiakvam.no'),(5,'Kim','HaugsbÃ¸','kimh','24ac62a38bd755f58da123f516376a3f','kimrunarsh@gmail.com'),(6,'kim','runar','kim','24ac62a38bd755f58da123f516376a3f','kimrunarsh@gmail.com');
+INSERT INTO `members` VALUES (2,'Foo','Bar','User','dc647eb65e6711e155375218212b3964',NULL),(3,'Test','Test','test','1a1dc91c907325c69271ddf0c944bc72',NULL),(4,'Dagfinn','Reiakvam','Dagfinn','1a1dc91c907325c69271ddf0c944bc72','dagfinn@reiakvam.no'),(5,'Anneli','Marsfjell','Annelikm','aa5a6eace1cf4198bfcf4232e0be2b67','annelikm@gmail.com'),(6,'kim','runar','kimrunar','24ac62a38bd755f58da123f516376a3f','kimrunarsh@gmail.com');
 /*!40000 ALTER TABLE `members` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -397,4 +423,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-02-24 23:00:26
+-- Dump completed on 2013-03-06 22:30:42
