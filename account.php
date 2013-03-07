@@ -26,35 +26,34 @@
 	</center>
 </div>
 <div class="span6 offset4">
-<form class="form-horizontal">
+<form class="form-horizontal" action="updateAccount.php" method="post">
 	<div class="control-group">
 		<label class="control-label" for="inputFirstName">First name</label>
 		<div class="controls">
-			<input type="text" id="inputFirstName" value=<?php echo "\"" .mysql_result($memberResults,0,"firstname"). "\""; ?>>
+			<input type="text" name="inputFirstName" value=<?php echo "\"" .mysql_result($memberResults,0,"firstname"). "\""; ?>>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="inputLastName">Last name</label>
 		<div class="controls">
-			<input type="text" id="inputLastName" value=<?php echo "\"" .mysql_result($memberResults,0,"lastname"). "\""; ?>>
+			<input type="text" name="inputLastName" value=<?php echo "\"" .mysql_result($memberResults,0,"lastname"). "\""; ?>>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="inputLogin">Login</label>
 		<div class="controls">
-			<input type="text" id="inputLogin" value=<?php echo "\"" .mysql_result($memberResults,0,"login"). "\""; ?>>
+			<input type="text" name="inputLogin" value=<?php echo "\"" .mysql_result($memberResults,0,"login"). "\""; ?>>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="inputEmail">Email</label>
 		<div class="controls">
-			<input type="text" id="inputEmail" value=<?php echo "\"" .mysql_result($memberResults,0,"email"). "\""; ?>>
+			<input type="text" name="inputEmail" value=<?php echo "\"" .mysql_result($memberResults,0,"email"). "\""; ?>>
 		</div>
 	</div>
 	<div class="control-group">
 		<div class="controls">
-			<button type="submit" class="btn">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;
-			<button type="submit" class="btn">Reset password</button>
+			<button type="submit" class="btn">Update</button>
 		</div>
 	</div>
 </div>
