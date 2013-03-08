@@ -18,6 +18,12 @@
 	$memberResults = mysql_query("SELECT * from members where member_id=$member_id");
 	if(!$memberResults)
 		die ('Mysql query failed! How did that happen? : ' . mysql_error());
+	
+	$sqlFirstName=mysql_result($memberResults,0,"firstname");
+	$sqlLastName=mysql_result($memberResults,0,"lastname");
+	$sqlLogin=mysql_result($memberResults,0,"login");
+	$sqlEmail=mysql_result($memberResults,0,"email");
+
 ?>
 <div class="hero-unit">
 	<center>
@@ -30,25 +36,29 @@
 	<div class="control-group">
 		<label class="control-label" for="inputFirstName">First name</label>
 		<div class="controls">
-			<input type="text" name="inputFirstName" value=<?php echo "\"" .mysql_result($memberResults,0,"firstname"). "\""; ?>>
+			<input type="text" name="inputFirstName" value='<?php echo $sqlFirstName; ?>'>
+			<input type="hidden" name="sqlFirstName" value='<?php echo $sqlFirstName; ?>'>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="inputLastName">Last name</label>
 		<div class="controls">
-			<input type="text" name="inputLastName" value=<?php echo "\"" .mysql_result($memberResults,0,"lastname"). "\""; ?>>
+			<input type="text" name="inputLastName" value='<?php echo $sqlLastName; ?>'>
+			<input type="hidden" name="sqlLastName" value='<?php echo $sqlLastName; ?>'>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="inputLogin">Login</label>
 		<div class="controls">
-			<input type="text" name="inputLogin" value=<?php echo "\"" .mysql_result($memberResults,0,"login"). "\""; ?>>
+			<input type="text" name="inputLogin" value='<?php echo $sqlLogin; ?>'>
+			<input type="hidden" name="sqlLogin" value='<?php echo $sqlLogin; ?>'>
 		</div>
 	</div>
 	<div class="control-group">
 		<label class="control-label" for="inputEmail">Email</label>
 		<div class="controls">
-			<input type="text" name="inputEmail" value=<?php echo "\"" .mysql_result($memberResults,0,"email"). "\""; ?>>
+			<input type="text" name="inputEmail" value='<?php echo $sqlEmail; ?>'>
+			<input type="hidden" name="sqlEmail" value='<?php echo $sqlEmail; ?>'>
 		</div>
 	</div>
 	<div class="control-group">
@@ -60,5 +70,6 @@
 </form>
 
 <?php
+mysql_close($con);
 include("footer.php");
 ?>
