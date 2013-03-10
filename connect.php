@@ -5,5 +5,9 @@ if (!$con)
   {
     die('Could not connect: ' . mysql_error());
   }
-mysql_select_db("beer", $con);
+
+$beerDb = mysql_select_db('beer', $con);
+	if (!$beerDb)
+    die ('Can\'t open db : ' . mysql_error());
+
 ?>
