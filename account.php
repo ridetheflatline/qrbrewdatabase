@@ -1,14 +1,7 @@
 <?php
 	include("header.php");
 	include("navBar.php");
-	$con = mysql_connect("localhost","beer","cerveza");
-	if (!$con)
-		die('Could not connect: ' . mysql_error());
-
- 	mysql_select_db("beer", $con);	
-	$beerDb = mysql_select_db('beer', $con);
-	if (!$beerDb)
-    die ('Can\'t open db : ' . mysql_error());
+	include("connect.php");
 
 	if(isset($_SESSION['SESS_MEMBER_ID']))
 		$member_id = $_SESSION['SESS_MEMBER_ID'];
