@@ -55,8 +55,7 @@ CREATE TABLE `batches` (
   `brewDate` date NOT NULL,
   `public` tinyint(1) NOT NULL DEFAULT '0',
   `state` enum('None','Deleted') NOT NULL DEFAULT 'None',
-  PRIMARY KEY (`batchId`),
-  UNIQUE KEY `batchNumber` (`batchNumber`)
+  UNIQUE KEY `batchId` (`batchId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -425,4 +424,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-11 17:44:04
+-- Dump completed on 2013-03-11 19:49:23
