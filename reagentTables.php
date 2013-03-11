@@ -1,8 +1,8 @@
 <?php
-  $result = mysql_query("SELECT boilNumber FROM boilings WHERE batchNumber=$batch");
+  $result = mysql_query("SELECT boilNumber FROM boilings WHERE batchId=$batch");
   $resultArray = mysql_fetch_array($result);
   $boilNumber = $resultArray['boilNumber'];
-  $result = mysql_query("SELECT mashNumber FROM mashings WHERE batchNumber=$batch");
+  $result = mysql_query("SELECT mashNumber FROM mashings WHERE batchId=$batch");
   $resultArray = mysql_fetch_array($result);
   $mashNumber = $resultArray['mashNumber'];
 ?>

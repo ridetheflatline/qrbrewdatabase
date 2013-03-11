@@ -21,8 +21,8 @@
 	$i=0;
 	while($i < $num)
 	{
-		$batchNr = mysql_result($maltResults,$i,"batchNumber");
-		$accessResults = mysql_query("SELECT * from batchAccess where member_id=$member_id and batchNumber=$batchNr");
+		$batchId = mysql_result($maltResults,$i,"batchId");
+		$accessResults = mysql_query("SELECT * from batchAccess where member_id=$member_id and batchId=$batchId");
 		if(mysql_numrows($accessResults) !== 0)
 			$level = mysql_result($accessResults,0,"level");
 		else
@@ -36,7 +36,7 @@
 						echo '<i class="icon-remove"></i>&nbsp;';
 					if($level == "Creator" || $level == "Editer")
 						echo '<i class="icon-pencil"></i>&nbsp;';
-					echo '<A HREF="showBatchInfo.php?batch='.mysql_result($maltResults,$i,"batchNumber").'"><i class="icon-eye-open"></i></a>';
+					echo '<A HREF="showBatchInfo.php?batch='.mysql_result($maltResults,$i,"batchId").'"><i class="icon-eye-open"></i></a>';
 					echo '</td>';
 	  	  echo '<td>' .mysql_result($maltResults,$i,"batchNumber").'</td>';
 	  	  echo "<td>" .mysql_result($maltResults,$i,"batchName"). "</td>";

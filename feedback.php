@@ -30,7 +30,7 @@ if(isset($_POST["commenter"]))
      $result = mysql_query("SELECT * FROM commenters WHERE commenterName='$commenter'");
     $resultArray = mysql_fetch_array($result);
     $commenterId = $resultArray['commenterId'];
-    $commentQuery="INSERT INTO comments (commentText, commenterId, batchNumber, bottleNumber) VALUES ('$comment','$commenterId','$batch','bottle')";
+    $commentQuery="INSERT INTO comments (commentText, commenterId, batchId, bottleNumber) VALUES ('$comment','$commenterId','$batch','bottle')";
     $insertComment = mysql_query($commentQuery);
     if ($insertComment == FALSE)
       {
@@ -44,7 +44,7 @@ if(isset($_POST["commenter"]))
 
 if(isset($_POST["member_id"]))
   {
-    $commentQuery="INSERT INTO comments (commentText, member_id, batchNumber, bottleNumber) VALUES ('$comment','$member_id','$batch','bottle')";
+    $commentQuery="INSERT INTO comments (commentText, member_id, batchId, bottleNumber) VALUES ('$comment','$member_id','$batch','bottle')";
     $result = mysql_query($commentQuery);
   }
 

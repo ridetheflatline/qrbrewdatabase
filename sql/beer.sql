@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: beer
 -- ------------------------------------------------------
--- Server version	5.5.29-0ubuntu0.12.04.1
+-- Server version	5.5.29-0ubuntu0.12.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `batchAccess`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `batchAccess` (
-  `batchNumber` int(11) DEFAULT NULL,
+  `batchId` int(11) DEFAULT NULL,
   `member_id` int(11) DEFAULT NULL,
   `level` enum('Creator','Editer','Viewer') DEFAULT 'Viewer'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -35,7 +35,7 @@ CREATE TABLE `batchAccess` (
 
 LOCK TABLES `batchAccess` WRITE;
 /*!40000 ALTER TABLE `batchAccess` DISABLE KEYS */;
-INSERT INTO `batchAccess` VALUES (18,4,'Creator'),(15,4,'Editer'),(1,4,'Viewer');
+INSERT INTO `batchAccess` VALUES (4,4,'Creator'),(3,4,'Editer'),(1,4,'Viewer');
 /*!40000 ALTER TABLE `batchAccess` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -47,6 +47,7 @@ DROP TABLE IF EXISTS `batches`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `batches` (
+  `batchId` int(11) NOT NULL AUTO_INCREMENT,
   `batchNumber` int(11) NOT NULL COMMENT 'The batch number',
   `batchName` text NOT NULL,
   `batchCode` text NOT NULL,
@@ -54,8 +55,9 @@ CREATE TABLE `batches` (
   `brewDate` date NOT NULL,
   `public` tinyint(1) NOT NULL DEFAULT '0',
   `state` enum('None','Deleted') NOT NULL DEFAULT 'None',
+  PRIMARY KEY (`batchId`),
   UNIQUE KEY `batchNumber` (`batchNumber`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +66,7 @@ CREATE TABLE `batches` (
 
 LOCK TABLES `batches` WRITE;
 /*!40000 ALTER TABLE `batches` DISABLE KEYS */;
-INSERT INTO `batches` VALUES (1,'TestBrew','TB',21.5,'2012-12-09',0,'None'),(14,'Sturdy Little Helper','SLH',20,'2012-10-02',1,'None'),(15,'Sturdy Santa','SSa',20,'2012-10-01',1,'None'),(18,'Ã˜lhond IPA','Ã˜I',21.5,'2013-01-12',1,'None');
+INSERT INTO `batches` VALUES (1,1,'TestBrew','TB',21.5,'2012-12-09',0,'None'),(2,14,'Sturdy Little Helper','SLH',20,'2012-10-02',1,'None'),(3,15,'Sturdy Santa','SSa',20,'2012-10-01',1,'None'),(4,18,'Ã˜lhond IPA','Ã˜I',21.5,'2013-01-12',1,'None');
 /*!40000 ALTER TABLE `batches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,7 +79,7 @@ DROP TABLE IF EXISTS `boilings`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `boilings` (
   `boilNumber` int(11) NOT NULL AUTO_INCREMENT,
-  `batchNumber` int(11) NOT NULL,
+  `batchId` int(11) NOT NULL,
   PRIMARY KEY (`boilNumber`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -88,7 +90,7 @@ CREATE TABLE `boilings` (
 
 LOCK TABLES `boilings` WRITE;
 /*!40000 ALTER TABLE `boilings` DISABLE KEYS */;
-INSERT INTO `boilings` VALUES (1,1),(2,18);
+INSERT INTO `boilings` VALUES (1,1),(2,4);
 /*!40000 ALTER TABLE `boilings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +132,7 @@ CREATE TABLE `bottlings` (
   `bottlingNumber` int(11) NOT NULL AUTO_INCREMENT,
   `bottlesUsed` int(11) NOT NULL,
   `bottledVolume` float NOT NULL,
-  `batchNumber` int(11) NOT NULL,
+  `batchId` int(11) NOT NULL,
   `bottleDate` date NOT NULL,
   UNIQUE KEY `bottlingNumber` (`bottlingNumber`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -182,11 +184,11 @@ CREATE TABLE `comments` (
   `commentId` int(11) NOT NULL AUTO_INCREMENT,
   `commentText` text COLLATE utf8_swedish_ci NOT NULL,
   `commenterId` int(11) NOT NULL,
-  `batchNumber` int(11) NOT NULL,
+  `batchId` int(11) NOT NULL,
   `bottleNumber` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
   PRIMARY KEY (`commentId`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,7 +197,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,'kjem denne kommentaren igjennom?	  ',1,1,0,0),(2,'kjem denne kommentaren igjennom?	  ',1,1,0,0),(3,'	  haha',0,1,0,6),(4,'	  haha',0,1,0,6),(5,'	  andre kommentar frÃ¥ nosa',1,1,0,0),(6,'Hei, eg er broren til nosa. Eg syns det er godt med TestBrew!	  ',0,1,0,0),(10,'Hei, eg er broren til nosa. Eg syns det er godt med TestBrew!	  ',9,1,0,0),(11,'Pisspils er eigentleg min favoritt.',10,1,0,0),(12,'Bare er best.',11,1,0,0),(13,'Bare er best.',11,1,0,0);
+INSERT INTO `comments` VALUES (1,'kjem denne kommentaren igjennom?	  ',1,1,0,0),(2,'kjem denne kommentaren igjennom?	  ',1,1,0,0),(3,'	  haha',0,1,0,6),(4,'	  haha',0,1,0,6),(5,'	  andre kommentar frÃ¥ nosa',1,1,0,0),(6,'Hei, eg er broren til nosa. Eg syns det er godt med TestBrew!	  ',0,1,0,0),(10,'Hei, eg er broren til nosa. Eg syns det er godt med TestBrew!	  ',9,1,0,0),(11,'Pisspils er eigentleg min favoritt.',10,1,0,0),(12,'Bare er best.',11,1,0,0),(13,'Bare er best.',11,1,0,0),(14,'I just farted.',0,15,0,4);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +241,7 @@ CREATE TABLE `keggings` (
   `keggingNumber` int(11) NOT NULL AUTO_INCREMENT,
   `kegUsed` text NOT NULL,
   `keggedVolume` float NOT NULL,
-  `batchNumber` int(11) NOT NULL,
+  `batchId` int(11) NOT NULL,
   `kegDate` date NOT NULL,
   PRIMARY KEY (`keggingNumber`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -319,7 +321,7 @@ DROP TABLE IF EXISTS `mashings`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `mashings` (
   `mashNumber` int(11) NOT NULL AUTO_INCREMENT,
-  `batchNumber` int(11) NOT NULL,
+  `batchId` int(11) NOT NULL,
   PRIMARY KEY (`mashNumber`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -330,7 +332,7 @@ CREATE TABLE `mashings` (
 
 LOCK TABLES `mashings` WRITE;
 /*!40000 ALTER TABLE `mashings` DISABLE KEYS */;
-INSERT INTO `mashings` VALUES (1,1),(2,18);
+INSERT INTO `mashings` VALUES (1,1),(2,4);
 /*!40000 ALTER TABLE `mashings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -358,7 +360,7 @@ CREATE TABLE `members` (
 
 LOCK TABLES `members` WRITE;
 /*!40000 ALTER TABLE `members` DISABLE KEYS */;
-INSERT INTO `members` VALUES (2,'Foo','Bar','User','dc647eb65e6711e155375218212b3964',NULL),(3,'Test','Test','test','1a1dc91c907325c69271ddf0c944bc72',NULL),(4,'Dagfinn','Reiakvam','Dagfinn','1a1dc91c907325c69271ddf0c944bc72','dagfinn@reiakvam.no'),(5,'Anneli','Marsfjell','Annelikm','aa5a6eace1cf4198bfcf4232e0be2b67','annelikm@gmail.com'),(6,'kim','runar','kimrunar','24ac62a38bd755f58da123f516376a3f','kimrunarsh@gmail.com');
+INSERT INTO `members` VALUES (2,'foo','Bar','User','dc647eb65e6711e155375218212b3964',NULL),(3,'Test','Test','test','1a1dc91c907325c69271ddf0c944bc72',NULL),(4,'Dagfinn Olav','Reiakvam','Dagfinn','1a1dc91c907325c69271ddf0c944bc72','dagfinn@reiakvam.no'),(5,'Anneli','Marsfjell','Annelikm','aa5a6eace1cf4198bfcf4232e0be2b67','annelikm@gmail.com'),(6,'kim','runar','kimrunar','24ac62a38bd755f58da123f516376a3f','kimrunarsh@gmail.com');
 /*!40000 ALTER TABLE `members` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,7 +373,7 @@ DROP TABLE IF EXISTS `queries`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `queries` (
   `queryNumber` int(11) NOT NULL AUTO_INCREMENT,
-  `batchNumber` int(11) NOT NULL,
+  `batchId` int(11) NOT NULL,
   `bottleNumber` int(11) NOT NULL,
   `queryTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`queryNumber`)
@@ -423,4 +425,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-06 22:30:42
+-- Dump completed on 2013-03-11 17:44:04

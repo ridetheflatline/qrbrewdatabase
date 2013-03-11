@@ -27,7 +27,7 @@
 			else
 				$bottle = FALSE;
 
-      $result = mysql_query("SELECT * FROM batches WHERE batchNumber = $batch");
+      $result = mysql_query("SELECT * FROM batches WHERE batchId = $batch");
 			if($result !== FALSE)
       	$row = mysql_fetch_array($result);
 			else
