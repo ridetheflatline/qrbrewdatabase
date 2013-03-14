@@ -32,7 +32,10 @@ echo $member_id;
 
 	// Checking for changes
 if ($firstName !== $sqlFirstName)
+	{
 	mysql_query("UPDATE members SET firstname='$firstName' WHERE member_id='$member_id'");
+	$_SESSION['SESS_FIRST_NAME'] = $firstName;
+	}
 if ($lastName !== $sqlLastName)
 	mysql_query("UPDATE members SET lastname='$lastName' WHERE member_id=$member_id'");
 if ($login !== $sqlLogin)
