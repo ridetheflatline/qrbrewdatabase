@@ -29,8 +29,13 @@ echo '<body>';
 			else if($message=="NotLoggedIn")
 			{
 				echo '<h2>Not logged in</h2>';
-      	echo '<p>Please log in to access account details.';
+      	echo '<p>Please log in to access this page.';
 			}			
+			else if($message=="AccessDenied")
+			{
+				echo '<h2>Access denied!</h2>';
+      	echo '<p>You do not have access to do that.';
+			}	
 			else
 			{
       	echo '<h2>Unknown error</h2>';
