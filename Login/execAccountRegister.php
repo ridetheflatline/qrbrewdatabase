@@ -1,4 +1,8 @@
 <?php
+	// IMPROVEMENTS:	
+	// Maybe we should check for duplicate email?
+	// If email exsists redirect to forgot password. 
+
 	//Start session
 	session_start();
 	
