@@ -25,7 +25,7 @@
 	</center>
 </div>
 <div class="span6 offset4">
-<form class="form-horizontal" action="updateAccount.php" method="post">
+<form style="display: inline" class="form-horizontal" action="updateAccount.php" method="post">
 	<div class="control-group">
 		<label class="control-label" for="inputFirstName">First name</label>
 		<div class="controls">
@@ -56,11 +56,14 @@
 	</div>
 	<div class="control-group">
 		<div class="controls">
-			<button type="submit" class="btn">Update</button>
+			<span><button type="submit" class="btn">Update</button></span>
+			</form>
+			<form style="display: inline" action="changePassword.php">
+			<span><input type="submit" class="btn" value="Change Password"></span>
+			</form>
 		</div>
 	</div>
 </div>
-</form>
 
 <?php
 mysql_close($con);

@@ -68,7 +68,10 @@
 			$_SESSION['SESS_FIRST_NAME'] = $member['firstname'];
 			$_SESSION['SESS_LAST_NAME'] = $member['lastname'];
 			session_write_close();
-			header("location: ../message.php?message=LoginSuccess");
+			if($member['state']=='TempPass')
+				header("location: ../changePassword.php");	// Redirect here if the password is temporary.
+			else
+				header("location: ../message.php?message=LoginSuccess");
 			exit();
 		}else {
 			//Login failed

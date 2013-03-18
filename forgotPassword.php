@@ -3,16 +3,6 @@
 	include("navBar.php");
 	include("connect.php");
 
-/*	$memberResults = mysql_query("SELECT * from members where member_id=$member_id");
-	if(!$memberResults)
-		die ('Mysql query failed! How did that happen? : ' . mysql_error());
-	
-	$sqlFirstName=mysql_result($memberResults,0,"firstname");
-	$sqlLastName=mysql_result($memberResults,0,"lastname");
-	$sqlLogin=mysql_result($memberResults,0,"login");
-	$sqlEmail=mysql_result($memberResults,0,"email");*/
-
-
 if(isset($_POST["email"]))
 {
 	$email=$_POST["email"];

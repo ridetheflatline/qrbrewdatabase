@@ -36,6 +36,11 @@ echo '<body>';
 				echo '<h2>Access denied!</h2>';
       	echo '<p>You do not have access to do that.';
 			}	
+			else if($message=="PasswordChanged")
+			{
+				echo '<h2>Password updated!</h2>';
+      	echo '<p>Your password was successfully updated.';
+			}	
 			else
 			{
       	echo '<h2>Unknown error</h2>';
