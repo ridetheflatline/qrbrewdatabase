@@ -1,0 +1,15 @@
+.hgignore
+#.\#**
+syntax: glob
+*.orig
+*.rej
+*~
+*.o
+#.\#*
+tests/*.err
+logs/*
+qr
+qr.pdf
+syntax: regexp
+.*\#.*\#$
+\.*\#.*$
