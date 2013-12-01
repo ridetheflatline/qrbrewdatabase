@@ -8,7 +8,6 @@
     <link href="css/bootstrap-responsive.css" rel="stylesheet" />
   </head>
   <body>
-    
     <form class="well" method="get" action="labelMaker.php">  
       <label>Batch print form
       </label>

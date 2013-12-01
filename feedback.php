@@ -27,7 +27,7 @@ if(isset($_POST["commenter"]))
 	$commenterQuery="INSERT INTO commenters (commenterName) VALUES ('$commenter')";
 	$result = mysql_query($commenterQuery);
       }
-     $result = mysql_query("SELECT * FROM commenters WHERE commenterName='$commenter'");
+    $result = mysql_query("SELECT * FROM commenters WHERE commenterName='$commenter'");
     $resultArray = mysql_fetch_array($result);
     $commenterId = $resultArray['commenterId'];
     $commentQuery="INSERT INTO comments (commentText, commenterId, batchId, bottleNumber) VALUES ('$comment','$commenterId','$batch','bottle')";

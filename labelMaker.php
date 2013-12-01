@@ -1,5 +1,6 @@
 <?php
-$batchNumber=14;
+
+$batchNumber = $_POST['batchNumber'];
 $batchName="Sturdy little helper";
 $numBottles=4;
 $brewDate="2012.10.02";
