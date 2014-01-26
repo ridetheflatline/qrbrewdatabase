@@ -41,6 +41,16 @@ echo '<body>';
 				echo '<h2>Password updated!</h2>';
       	echo '<p>Your password was successfully updated.';
 			}	
+			else if($message=="NoBatchSelected")
+			{
+				echo '<h2>No batch selected!</h2>';
+      	echo '<p>The page you tried to enter requires a input in the url. Please tell us how you ended up here.';
+			}	
+			else if($message=="NoBatchEditRights")
+			{
+				echo '<h2>Batch access denied!</h2>';
+      	echo '<p>You do not have the correct privileges to edit this batch.';
+			}	
 			else
 			{
       	echo '<h2>Unknown error</h2>';
