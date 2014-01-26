@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.29, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.34, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: beer
 -- ------------------------------------------------------
--- Server version	5.5.29-0ubuntu0.12.04.2
+-- Server version	5.5.34-0ubuntu0.13.10.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -35,7 +35,7 @@ CREATE TABLE `batchAccess` (
 
 LOCK TABLES `batchAccess` WRITE;
 /*!40000 ALTER TABLE `batchAccess` DISABLE KEYS */;
-INSERT INTO `batchAccess` VALUES (4,4,'Creator'),(3,4,'Editer'),(1,4,'Viewer');
+INSERT INTO `batchAccess` VALUES (4,4,'Creator'),(3,4,'Editer'),(1,4,'Viewer'),(5,4,'Creator'),(6,4,'Creator');
 /*!40000 ALTER TABLE `batchAccess` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,7 +56,7 @@ CREATE TABLE `batches` (
   `public` tinyint(1) NOT NULL DEFAULT '0',
   `state` enum('None','Deleted') NOT NULL DEFAULT 'None',
   UNIQUE KEY `batchId` (`batchId`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `batches` (
 
 LOCK TABLES `batches` WRITE;
 /*!40000 ALTER TABLE `batches` DISABLE KEYS */;
-INSERT INTO `batches` VALUES (1,1,'TestBrew','TB',21.5,'2012-12-09',0,'None'),(2,14,'Sturdy Little Helper','SLH',20,'2012-10-02',1,'None'),(3,15,'Sturdy Santa','SSa',20,'2012-10-01',1,'None'),(4,18,'Ã˜lhond IPA','Ã˜I',21.5,'2013-01-12',1,'None');
+INSERT INTO `batches` VALUES (1,1,'TestBrew','TB',21.5,'2012-12-09',0,'None'),(2,14,'Sturdy Little Helper','SLH',20,'2012-10-02',1,'None'),(3,15,'Sturdy Santa','SSa',20,'2012-10-01',1,'None'),(4,18,'Ã˜lhond IPA','Ã˜I',21.5,'2013-01-12',1,'None'),(5,1,'Spiker','SP',10,'2013-03-12',1,'Deleted'),(6,23,'Tysk Pilsner','TP',25,'2013-05-17',0,'Deleted');
 /*!40000 ALTER TABLE `batches` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -349,6 +349,7 @@ CREATE TABLE `members` (
   `login` varchar(100) NOT NULL DEFAULT '',
   `passwd` varchar(32) NOT NULL DEFAULT '',
   `email` text,
+  `state` enum('None','TempPass') NOT NULL DEFAULT 'None',
   PRIMARY KEY (`member_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -359,7 +360,7 @@ CREATE TABLE `members` (
 
 LOCK TABLES `members` WRITE;
 /*!40000 ALTER TABLE `members` DISABLE KEYS */;
-INSERT INTO `members` VALUES (2,'foo','Bar','User','dc647eb65e6711e155375218212b3964',NULL),(3,'Test','Test','test','1a1dc91c907325c69271ddf0c944bc72',NULL),(4,'Dagfinn Olav','Reiakvam','Dagfinn','1a1dc91c907325c69271ddf0c944bc72','dagfinn@reiakvam.no'),(5,'Anneli','Marsfjell','Annelikm','aa5a6eace1cf4198bfcf4232e0be2b67','annelikm@gmail.com'),(6,'kim','runar','kimrunar','24ac62a38bd755f58da123f516376a3f','kimrunarsh@gmail.com');
+INSERT INTO `members` VALUES (2,'foo','Bar','User','dc647eb65e6711e155375218212b3964',NULL,'None'),(3,'Test','Test','test','1a1dc91c907325c69271ddf0c944bc72',NULL,'None'),(4,'Dagfinn','Reiakvam','Dagfinn','fedf02fda259c05206e0d01db9542c62','dagfinn@reiakvam.no','None'),(5,'Anneli','Marsfjell','Annelikm','aa5a6eace1cf4198bfcf4232e0be2b67','annelikm@gmail.com','None'),(6,'kim','runar','kimrunar','24ac62a38bd755f58da123f516376a3f','kimrunarsh@gmail.com','None');
 /*!40000 ALTER TABLE `members` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -424,4 +425,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-03-11 19:49:23
+-- Dump completed on 2014-01-26 14:08:18
