@@ -37,7 +37,7 @@
 					if($level == "Creator")
 						createDeleteButton(mysql_result($maltResults,$i,"batchName"),mysql_result($maltResults,$i,"batchId"));
 					if($level == "Creator" || $level == "Editer")
-						echo '<i class="icon-pencil"></i>'."\n";
+						echo '<A HREF="editBatch.php?batchId='.mysql_result($maltResults,$i,"batchId").'"><i class="icon-pencil"></i></a>'."\n";
 				echo '<A HREF="showBatchInfo.php?batch='.mysql_result($maltResults,$i,"batchId").'"><i class="icon-eye-open"></i></a>'."\n";
 				echo '</td>'."\n";
 	  	  echo '<td>' .mysql_result($maltResults,$i,"batchNumber").'</td>'."\n";
